@@ -1,5 +1,7 @@
 ## Introduction
 
+This is a fork from [bjornharrtell/jts2geojson](https://github.com/bjornharrtell/jts2geojson) with the only difference that the Objects instantiated by `GeoJSONReader` are based on the (older) `com.vividsolutions:jts` library that comes as a transitive dependency of *hibernate-spatial* and doesn't ship with its own GeoJSON Converter classes. Maybe newer versions will make this project obsolete.
+
 This Java library can convert JTS geometries to GeoJSON and back. Its API is similar to other io.* classes in JTS.
 
 [![Build Status](https://travis-ci.org/bjornharrtell/jts2geojson.svg?branch=master)](https://travis-ci.org/bjornharrtell/jts2geojson)

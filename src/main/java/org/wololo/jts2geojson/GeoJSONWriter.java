@@ -4,20 +4,20 @@ import java.util.List;
 
 import org.wololo.geojson.Feature;
 
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.GeometryCollection;
-import org.locationtech.jts.geom.LineString;
-import org.locationtech.jts.geom.MultiLineString;
-import org.locationtech.jts.geom.MultiPoint;
-import org.locationtech.jts.geom.MultiPolygon;
-import org.locationtech.jts.geom.Point;
-import org.locationtech.jts.geom.Polygon;
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.GeometryCollection;
+import com.vividsolutions.jts.geom.LineString;
+import com.vividsolutions.jts.geom.MultiLineString;
+import com.vividsolutions.jts.geom.MultiPoint;
+import com.vividsolutions.jts.geom.MultiPolygon;
+import com.vividsolutions.jts.geom.Point;
+import com.vividsolutions.jts.geom.Polygon;
 
 public class GeoJSONWriter {
 
     final static GeoJSONReader reader = new GeoJSONReader();
-        
+
     public org.wololo.geojson.Geometry write(Geometry geometry) {
         Class<? extends Geometry> c = geometry.getClass();
         if (c.equals(Point.class)) {
@@ -38,11 +38,11 @@ public class GeoJSONWriter {
             throw new UnsupportedOperationException();
         }
     }
-    
+
     public org.wololo.geojson.FeatureCollection write(List<Feature> features) {
         int size = features.size();
         org.wololo.geojson.Feature[] featuresJson = new org.wololo.geojson.Feature[size];
-        for (int i=0; i<size; i++) {
+        for (int i = 0; i < size; i++) {
             featuresJson[i] = features.get(i);
         }
         return new org.wololo.geojson.FeatureCollection(featuresJson);
@@ -102,11 +102,10 @@ public class GeoJSONWriter {
     }
 
     double[] convert(Coordinate coordinate) {
-        if(Double.isNaN( coordinate.z )) {
-            return new double[] { coordinate.x, coordinate.y };
-        }
-        else {
-            return new double[] { coordinate.x, coordinate.y, coordinate.z };
+        if (Double.isNaN(coordinate.z)) {
+            return new double[]{coordinate.x, coordinate.y};
+        } else {
+            return new double[]{coordinate.x, coordinate.y, coordinate.z};
         }
     }
 
